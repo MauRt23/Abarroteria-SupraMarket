@@ -1,0 +1,7 @@
+{
+  "name": "abarrotera",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

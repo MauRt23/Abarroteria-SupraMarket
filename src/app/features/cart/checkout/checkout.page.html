@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Checkout</ion-title>
+      <ion-buttons slot="start">
+      <!-- Flecha back; si no hay historial, vuelve a /catalog -->
+      <ion-back-button text="" defaultHref="/catalog" aria-label="Regresar"></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="checkout-bg ion-padding">
+  <ion-card class="checkout-card">
+    <p class="subtitle">Revisa tu pedido y confirma el pago (simulado).</p>
+
+    <div class="total-row">
+      <span class="total-label">Total:</span>
+      <span class="total-value">{{ total | currency:'USD' }}</span>
+    </div>
+
+    <div class="methods-title">Método de pago</div>
+
+    <ion-list inset="true" class="method-list">
+      <ion-radio-group [(ngModel)]="method" mode="md" aria-label="Método de pago">
+        <ion-item lines="full" class="method-item">
+          <ion-icon name="cash-outline" slot="start"></ion-icon>
+          <ion-label>Efectivo</ion-label>
+          <ion-radio slot="end" value="cash"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="full" class="method-item">
+          <ion-icon name="card-outline" slot="start"></ion-icon>
+          <ion-label>Tarjeta de crédito / débito</ion-label>
+          <ion-radio slot="end" value="card"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none" class="method-item">
+          <ion-icon name="logo-paypal" slot="start"></ion-icon>
+          <ion-label>PayPal</ion-label>
+          <ion-radio slot="end" value="paypal"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <div *ngIf="submitted && !method" class="error">Selecciona un método de pago.</div>
+
+    <ion-button
+      class="pay-btn"
+      expand="block"
+      (click)="pay()"
+      [disabled]="loading">
+        <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+  <span *ngIf="!loading && method !== 'card' && method !== 'paypal'">Pagar</span>
+  <span *ngIf="!loading && (method === 'card' || method === 'paypal')">Continuar</span>
+    </ion-button>
+  </ion-card>
+
+  <ion-toast
+    [isOpen]="toastOpen"
+    message="Pago exitoso (simulado)"
+    duration="1200"
+    position="top"
+    (didDismiss)="toastOpen=false">
+  </ion-toast>
+</ion-content>

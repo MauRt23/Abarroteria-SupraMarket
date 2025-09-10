@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- Flecha back; si no hay historial, vuelve a /catalog -->
+      <ion-back-button text="" defaultHref="/catalog" aria-label="Regresar"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Carrito</ion-title>
+
+    <!-- ✅ Texto visible sobre barra oscura -->
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="light" [routerLink]="['/catalog']">
+        Seguir comprando
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="!empty; else emptyTpl">
+    <!-- ⬇️ mantiene tu clase condicional para animar -->
+    <ion-item *ngFor="let it of cart.items" [class.removing]="removingId === it.product.id">
+      <ion-thumbnail slot="start">
+        <img [src]="it.product.image" [alt]="it.product.name" />
+      </ion-thumbnail>
+
+      <ion-label>
+        <div class="name">{{ it.product.name }}</div>
+        <div class="price">${{ it.product.price | number:'1.2-2' }}</div>
+        <div class="qty">
+          <ion-button size="small" fill="outline" (click)="dec(it.product.id)">–</ion-button>
+          <span>{{ it.qty }}</span>
+          <ion-button size="small" fill="outline" (click)="inc(it.product.id)">+</ion-button>
+        </div>
+      </ion-label>
+
+      <div slot="end" class="line-total">
+        ${{ (it.product.price * it.qty) | number:'1.2-2' }}
+        <!-- X en lugar de “Quitar” -->
+        <ion-button size="small" fill="clear" class="remove-btn" aria-label="Quitar" (click)="removeWithAnim(it.product.id)">
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #emptyTpl>
+    <div class="empty">Tu carrito está vacío.</div>
+  </ng-template>
+</ion-content>
+
+<ion-footer *ngIf="!empty">
+  <ion-toolbar>
+    <ion-title>Total: ${{ total | number:'1.2-2' }}</ion-title>
+
+    <!-- ✅ Texto visible sobre barra oscura -->
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="light" [routerLink]="['/checkout']">
+        Continuar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

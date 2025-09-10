@@ -1,0 +1,23 @@
+.name{ font-weight:600; }
+.price{ color: var(--ion-color-primary); font-weight:600; }
+.qty{ display:flex; align-items:center; gap:8px; margin-top:6px; }
+.line-total { text-align:right; min-width: 96px; }
+.empty{ padding:24px; text-align:center; color:var(--ion-color-medium); }
+
+/* Botón X compacto */
+.remove-btn {
+  --padding-start: 6px;
+  --padding-end: 6px;
+  color: var(--ion-color-danger);
+}
+
+/* Fila cuando se elimina */
+ion-item.removing {
+  animation: cartRemove 280ms ease-in forwards;
+}
+
+@keyframes cartRemove {
+  0%   { background: transparent; transform: translateX(0); opacity: 1; }
+  15%  { background: #ffe5e5; }            /* flash rojo suave */
+  100% { background: #ffe5e5; transform: translateX(8px); opacity: 0; }
+}

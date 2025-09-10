@@ -1,0 +1,73 @@
+.box { padding: 16px; }
+.muted { color: var(--ion-color-medium); }
+
+
+.checkout-bg {
+  --background: #f3f4f8;
+}
+
+.checkout-card {
+  max-width: 900px;
+  margin: 12px auto;
+  padding: 16px 14px 22px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(16, 24, 40, 0.08);
+}
+
+.subtitle {
+  color: #6b7280;
+  margin: 0 0 8px;
+}
+
+.total-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 4px 2px 16px;
+
+  .total-label { font-size: 22px; font-weight: 700; color: #111827; }
+  .total-value { font-size: 22px; font-weight: 800; color: #111827; }
+}
+
+.methods-title {
+  margin: 6px 2px 8px;
+  font-weight: 700;
+  color: var(--ion-color-primary);
+}
+
+.method-list {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.method-item {
+  --background: #ffffff;
+  --inner-padding-end: 10px;
+  --padding-start: 12px;
+
+  ion-icon[slot="start"] {
+    font-size: 22px;
+    color: #4b5563;
+    margin-right: 6px;
+  }
+
+  ion-radio {
+    margin-left: 8px;
+  }
+}
+
+.error {
+  color: var(--ion-color-danger);
+  font-size: 13px;
+  margin: 10px 4px 0;
+}
+
+.pay-btn {
+  margin-top: 18px;
+  height: 48px;
+  border-radius: 12px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+}

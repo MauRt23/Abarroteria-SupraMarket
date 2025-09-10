@@ -1,0 +1,93 @@
+.hero { display:flex; justify-content:center; padding:16px 0 4px; }
+ion-avatar { width:84px; height:84px; }
+ion-avatar ion-icon { width:100%; height:100%; }
+.actions { padding: 12px; }
+
+
+.logout-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 4px;
+  margin-right: 8px;
+  user-select: none;
+
+  ion-button {
+    --padding-start: 6px;
+    --padding-end: 6px;
+    height: 30px;
+    min-height: 30px;
+  }
+
+  ion-icon {
+    font-size: 20px;
+    color: #4b5563; /* gris medio */
+  }
+
+  .logout-text {
+    margin-top: -4px;
+    font-size: 10px;
+    line-height: 1;
+    color: #6b7280; /* gris suave */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .2px;
+  }
+}
+
+
+
+ion-header ion-toolbar {
+  --background: var(--brand-700, #47667B);
+  --color: #fff;              /* texto de la toolbar */
+}
+
+.logout-text { color: inherit; } /* el span toma el color de la barra */
+
+
+/* Barra superior con tu color de marca (#47667B) y texto blanco */
+ion-header ion-toolbar {
+  --background: var(--brand-700, #47667B);
+  --color: #ffffff;
+}
+
+/* El texto del botón hereda el color blanco de la toolbar */
+.logout-text {
+  color: inherit;
+  font-weight: 600;
+}
+
+/* Avatar centrado y grande */
+.hero {
+  display: flex;
+  justify-content: center;
+  padding: 18px 0 6px;
+}
+
+ion-avatar {
+  width: 88px;
+  height: 88px;
+  background: #eef3ff;
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+ion-avatar ion-icon {
+  font-size: 68px;
+  color: #0f172a;
+}
+
+/* Botón principal consistente con tu paleta */
+.actions {
+  padding: 12px 16px 20px;
+}
+
+.actions ion-button {
+  --background: #47667B;
+  --background-activated: #3f5b6d;
+  --color: #fff;
+  font-weight: 700;
+  letter-spacing: .3px;
+}

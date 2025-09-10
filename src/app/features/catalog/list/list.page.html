@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Catálogo</ion-title>
+    <ion-buttons slot="end">
+     <ion-button routerLink="/orders" aria-label="Pedidos">
+        <ion-icon name="receipt-outline"></ion-icon>
+      </ion-button>
+
+      <!-- Perfil -->
+      <ion-button routerLink="/profile" aria-label="Perfil">
+        <ion-icon name="person-outline"></ion-icon>
+      </ion-button>
+      <ion-button [routerLink]="['/cart']">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge *ngIf="count" color="primary">{{ count }}</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar
+    placeholder="Buscar producto o categoría"
+    [(ngModel)]="q"
+    (ionInput)="applyFilter()">
+  </ion-searchbar>
+
+  <div class="chips">
+    <ion-chip *ngFor="let c of categories"
+              (click)="setCat(c)"
+              [outline]="activeCat!==c"
+              [color]="activeCat===c ? 'primary':'medium'">
+      <ion-label>{{ c }}</ion-label>
+    </ion-chip>
+  </div>
+
+  <div class="grid">
+    <ion-card *ngFor="let p of filtered" (click)="open(p)">
+      <img [src]="p.image" [alt]="p.name" loading="lazy" />
+      <ion-card-header>
+        <ion-card-title>{{ p.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="price">${{ p.price | number:'1.2-2' }} • {{ p.unit }}</div>
+        <ion-button size="small" (click)="addToCart(p, $event)">
+          <ion-icon slot="start" name="add-outline"></ion-icon>
+          Agregar
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- FAB solo para carrito en móviles -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink]="['/cart']">
+      <ion-icon name="cart-outline"></ion-icon>
+      <ion-badge *ngIf="count" color="light" class="fab-badge">{{ count }}</ion-badge>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

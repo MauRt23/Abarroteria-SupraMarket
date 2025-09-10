@@ -35,3 +35,52 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Barra de título en #47667B con texto/íconos blancos */
+ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: #ffffff;
+  --border-color: transparent;
+}
+
+/* Fondo blanco en todas las pantallas */
+ion-content { --background: #ffffff; }
+ion-list, ion-item, ion-card { --background: #ffffff; }
+
+
+/* src/global.scss */
+ion-toolbar ion-button[fill="clear"] {
+  --color: var(--ion-color-primary-contrast); /* normalmente #fff */
+  font-weight: 600;
+}
+
+
+
+
+/* Aplica la fuente a todo */
+html, body, ion-app {
+  font-family: var(--ion-font-family) !important;
+}
+
+/* Asegura herencia en componentes típicos */
+ion-title,
+ion-toolbar,
+ion-button,
+ion-input,
+ion-textarea,
+ion-label,
+ion-item,
+ion-card,
+ion-chip,
+ion-badge,
+ion-toast,
+ion-alert,
+ion-modal {
+  font-family: var(--ion-font-family) !important;
+}
+
+/* (Opcional) pesos sugeridos para jerarquía */
+h1, .h1, ion-title { font-weight: 700; }
+h2, .h2 { font-weight: 600; }
+h3, .h3, label, ion-label { font-weight: 500; }
+body, p, input, button { font-weight: 400; }

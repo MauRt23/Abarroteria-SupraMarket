@@ -1,0 +1,23 @@
+/* Todas las barras de título (headers / modales) */
+ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: #ffffff;                 /* texto e íconos en blanco */
+  --border-color: transparent;      /* sin línea inferior */
+  box-shadow: 0 2px 10px rgba(0,0,0,.06); /* sombra sutil opcional */
+}
+
+/* También dentro de modales por si los usas */
+ion-modal ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: #ffffff;
+}
+
+/* Todo el contenido con fondo blanco */
+ion-content {
+  --background: #ffffff;
+}
+
+/* Listas, ítems y tarjetas blancos */
+ion-list, ion-item, ion-card {
+  --background: #ffffff;
+}

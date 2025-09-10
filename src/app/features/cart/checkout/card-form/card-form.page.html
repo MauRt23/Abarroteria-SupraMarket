@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="/checkout" aria-label="Regresar"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pago con tarjeta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- ⬇️ Form con la ref #f -->
+  <form #f="ngForm" (ngSubmit)="submit(f)">
+    <ion-list inset="true">
+      <ion-item lines="full">
+        <ion-label position="stacked">Titular</ion-label>
+        <ion-input
+          [(ngModel)]="data.name"
+          name="name"
+          required
+          placeholder="Nombre como aparece en la tarjeta">
+        </ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="stacked">Número de tarjeta</ion-label>
+        <ion-input
+          [(ngModel)]="data.number"
+          name="number"
+          inputmode="numeric"
+          placeholder="1234123412341234"
+          maxlength="19">
+        </ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="stacked">Vencimiento (MM/AA)</ion-label>
+        <ion-input
+          [(ngModel)]="data.expiry"
+          name="expiry"
+          inputmode="numeric"
+          placeholder="MM/AA"
+          maxlength="5">
+        </ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">CVV</ion-label>
+        <ion-input
+          [(ngModel)]="data.cvv"
+          name="cvv"
+          inputmode="numeric"
+          placeholder="***"
+          maxlength="4">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div class="total">Total: {{ total | currency:'USD' }}</div>
+
+    <!-- Botón de envío del form -->
+    <ion-button expand="block" type="submit" [disabled]="loading || !formOk">
+      <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+      <span *ngIf="!loading">Comprar</span>
+    </ion-button>
+  </form>
+
+  <ion-toast
+    [isOpen]="toastOpen"
+    message="Pago con tarjeta exitoso (simulado)"
+    duration="1200"
+    position="top"
+    (didDismiss)="toastOpen=false">
+  </ion-toast>
+</ion-content>

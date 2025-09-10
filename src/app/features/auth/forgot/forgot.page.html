@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="/login" aria-label="Volver"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recuperar contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Estado: formulario -->
+  <ng-container *ngIf="!sent; else successTpl">
+    <ion-card class="auth-card">
+      <ion-card-content>
+        <p class="subtitle">
+          Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.
+        </p>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+          <ion-item
+            class="input-item"
+            [color]="emailCtrl?.invalid && emailCtrl?.touched ? 'danger' : undefined">
+            <ion-label position="stacked">Correo electrónico</ion-label>
+            <ion-input
+              type="email"
+              formControlName="email"
+              inputmode="email"
+              autocomplete="email"
+              placeholder="tucorreo@dominio.com">
+            </ion-input>
+          </ion-item>
+
+          <ion-note color="danger" *ngIf="emailCtrl?.errors && emailCtrl?.touched" class="help">
+            <ng-container *ngIf="emailCtrl?.errors?.['required']">El correo es obligatorio.</ng-container>
+            <ng-container *ngIf="emailCtrl?.errors?.['email']">Ingresa un correo válido.</ng-container>
+          </ion-note>
+
+          <ion-button
+            class="submit-btn"
+            expand="block"
+            type="submit"
+            [disabled]="loading || form.invalid">
+            <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+            <span *ngIf="!loading">Enviar enlace</span>
+          </ion-button>
+
+          <div class="links-row">
+            <ion-button fill="clear" size="small" routerLink="/auth/login">
+              Volver a iniciar sesión
+            </ion-button>
+            <ion-button fill="clear" size="small" routerLink="/auth/register">
+              Crear cuenta
+            </ion-button>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <!-- Estado: éxito -->
+  <ng-template #successTpl>
+    <ion-card class="auth-card success">
+      <ion-card-header>
+        <ion-card-title class="success-title">
+          <ion-icon name="mail-unread-outline" aria-hidden="true"></ion-icon>
+          ¡Revisa tu bandeja!
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Si el correo existe en el sistema, recibirás un enlace para restablecer tu contraseña en unos minutos.
+      </ion-card-content>
+
+      <ion-button expand="block" routerLink="/auth/login" class="submit-btn">
+        Ir al inicio de sesión
+      </ion-button>
+    </ion-card>
+  </ng-template>
+</ion-content>

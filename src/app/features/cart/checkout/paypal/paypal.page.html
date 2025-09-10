@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="/checkout" aria-label="Regresar"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Pago con PayPal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list inset="true">
+    <ion-item lines="full">
+      <ion-label position="stacked">Correo de PayPal</ion-label>
+      <ion-input [(ngModel)]="email" name="email" type="email" placeholder="tu@correo.com"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="total">Total: {{ total | currency:'USD' }}</div>
+
+  <ion-button expand="block" (click)="authorize()" [disabled]="loading || !emailOk">
+    <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+    <span *ngIf="!loading">Autorizar pago</span>
+  </ion-button>
+
+  <ion-toast
+    [isOpen]="toastOpen"
+    message="Pago con PayPal exitoso (simulado)"
+    duration="1200"
+    position="top"
+    (didDismiss)="toastOpen=false">
+  </ion-toast>
+</ion-content>

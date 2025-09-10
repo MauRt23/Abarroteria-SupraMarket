@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- Flecha de volver; si no hay historial, va a /catalog -->
+      <ion-back-button text="" defaultHref="/catalog" aria-label="Regresar"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{ p?.name || 'Producto' }}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/cart" aria-label="Carrito">
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="p as prod">
+    <img [src]="prod.image" class="hero" [alt]="prod.name || 'Producto'" />
+
+    <ion-card class="card">
+      <ion-card-header>
+        <ion-card-title class="name">{{ prod.name }}</ion-card-title>
+        <div class="price-pill">
+          ${{ prod.price | number: '1.2-2' }} • {{ prod.unit }}
+        </div>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="meta">
+          <ion-chip color="primary" outline>
+            <ion-label>{{ prod.category }}</ion-label>
+          </ion-chip>
+          <ion-chip color="success" outline>
+            <ion-label>Stock: {{ prod.stock }}</ion-label>
+          </ion-chip>
+        </div>
+
+        <p class="desc">
+          {{ prod.description || 'Producto de abarrotes de alta rotación.' }}
+        </p>
+
+        <ion-button class="buy-btn" size="small" (click)="add()">
+          <ion-icon slot="start" name="cart-outline"></ion-icon>
+          Agregar al carrito
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-toast
+      [isOpen]="showToast"
+      message="Producto agregado al carrito"
+      duration="800"
+      position="top"
+      (didDismiss)="showToast = false">
+    </ion-toast>
+  </ng-container>
+</ion-content>

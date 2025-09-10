@@ -1,0 +1,100 @@
+.mt {
+  margin-top: 14px;
+}
+
+
+/* Fondo general consistente con el login */
+ion-content {
+  --background: #f3f4f8;
+}
+
+/* Tarjeta centrada y limpia */
+.auth-card {
+  width: 100%;
+  max-width: 900px;
+  margin: 36px auto;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(16, 24, 40, 0.08);
+}
+
+/* Texto introductorio */
+.subtitle {
+  margin: 4px 0 14px;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+/* Input estilo “azulado” como en login */
+.input-item {
+  --background: #eef3ff;
+  --ion-item-background: #eef3ff;
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+  border-radius: 16px;
+  border: 1px solid #c6d2ff;
+  margin: 12px 0 4px;
+}
+.input-item:focus-within {
+  border-color: var(--ion-color-primary);
+  box-shadow: 0 0 0 2px rgba(var(--ion-color-primary-rgb), 0.15);
+}
+ion-label {
+  color: #4b5563;
+  font-weight: 600;
+}
+ion-input {
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+  --placeholder-color: #94a3b8;
+  color: #111827;
+  font-weight: 600;
+}
+
+/* Ayuda/errores */
+.help {
+  display: block;
+  margin: 4px 2px 0;
+  font-size: 12px;
+}
+
+/* Botón principal */
+.submit-btn {
+  margin-top: 16px;
+  height: 48px;
+  border-radius: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+/* Enlaces inferiores ordenados */
+.links-row {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.links-row ion-button[fill="clear"] {
+  width: auto;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+/* Estado de éxito */
+.success .success-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.success ion-card-content {
+  color: #374151;
+}
+
+/* Responsivo menor */
+@media (max-width: 420px) {
+  .auth-card { margin: 24px auto; }
+}

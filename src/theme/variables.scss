@@ -1,2 +1,48 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+:root {
+  --ion-color-primary: #2563eb; /* azul limpio */
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-medium: #64748b;
+  --ion-color-light: #f6f7fb;
+  --ion-text-color: #111827;
+  --ion-border-radius: 16px;
+}
+
+ion-content {
+  --background: var(--ion-color-light);
+}
+
+ion-card {
+  border-radius: var(--ion-border-radius);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+
+
+:root {
+  /* Color de marca */
+  --ion-color-primary: #47667B;
+  --ion-color-primary-contrast: #ffffff;
+}
+
+/* Fondo general blanco en iOS y MD */
+:root, .ios, .md {
+  --ion-background-color: #ffffff;
+  --ion-item-background: #ffffff;
+}
+
+:root {
+  --ion-color-primary: #47667B;
+  --ion-color-primary-contrast: #ffffff;
+}
+
+
+
+:root {
+  /* Fuente global para Ionic */
+  --ion-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+                     "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji",
+                     "Segoe UI Emoji", "Segoe UI Symbol";
+}

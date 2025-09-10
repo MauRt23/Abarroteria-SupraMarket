@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- Flecha back; si no hay historial, vuelve a /catalog -->
+      <ion-back-button text="" defaultHref="/catalog" aria-label="Regresar"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Perfil</ion-title>
+
+    <ion-buttons slot="end">
+      <!-- Botón + texto “Cerrar sesión” -->
+      <ion-button fill="clear" size="small" (click)="logout()" aria-label="Cerrar sesión">
+        <ion-icon slot="start" name="log-out-outline"></ion-icon>
+        <span class="logout-text">Cerrar sesión</span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="hero">
+    <ion-avatar>
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </ion-avatar>
+  </div>
+
+  <ion-list inset="true">
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Teléfono</ion-label>
+      <ion-input [(ngModel)]="phone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Dirección</ion-label>
+      <ion-input [(ngModel)]="address"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="actions">
+    <ion-button expand="block" (click)="save()">Guardar cambios</ion-button>
+  </div>
+
+  <ion-toast
+    [isOpen]="showToast"
+    message="Perfil guardado (simulado)"
+    duration="900"
+    position="top"
+    (didDismiss)="showToast = false">
+  </ion-toast>
+</ion-content>

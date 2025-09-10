@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Iniciar sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <img src="assets/tienda.png" class="custom"/>
+
+    <!-- Usuario -->
+    <ion-item>
+      <ion-label position="stacked">Correo</ion-label>
+      <ion-input
+        [(ngModel)]="data.username"
+        name="username"
+        type="text"
+        required
+        autocomplete="username"
+        placeholder="tu@correo.com">
+      </ion-input>
+    </ion-item>
+
+    <!-- Contraseña -->
+    <ion-item class="ion-margin-top">
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input
+        [(ngModel)]="data.password"
+        name="password"
+        [type]="mostrarPassword ? 'text' : 'password'"
+        required
+        minlength="8"
+        autocomplete="current-password"
+        placeholder="********">
+      </ion-input>
+      <ion-icon
+        name="eye"
+        slot="end"
+        style="cursor: pointer"
+        (click)="togglePassword()">
+      </ion-icon>
+    </ion-item>
+
+    <!-- Mensajes simples -->
+    <div *ngIf="f.submitted && !data.username" class="error">El usuario/correo es obligatorio.</div>
+    <div *ngIf="f.submitted && !data.password" class="error">La contraseña es obligatoria.</div>
+    <div *ngIf="data.password && data.password.length < 8" class="error">Mínimo 8 caracteres.</div>
+
+    <!-- Acciones principales -->
+    <div class="actions">
+      <ion-button
+        expand="block"
+        type="submit"
+        [disabled]="loading || f.invalid">
+        <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+        <span *ngIf="!loading">Entrar</span>
+      </ion-button>
+
+      <div class="links">
+        <ion-button fill="clear" size="small" routerLink="/forgot">¿Olvidaste tu contraseña?</ion-button>
+        <ion-button fill="clear" size="small" (click)="agregarEncargado()">¿Eres nuevo? Regístrate</ion-button>
+      </div>
+    </div>
+
+    <!-- Separador -->
+    <div class="divider"><span>o continúa con</span></div>
+
+    <!-- Botones sociales / alternativos dentro del formulario -->
+    <div class="social-grid">
+      <ion-button color="danger" (click)="loginGoogle()" [disabled]="loading">
+        <ion-icon slot="start" name="logo-google"></ion-icon>
+        Google
+      </ion-button>
+
+      <ion-button color="medium" (click)="loginInvitado()" [disabled]="loading">
+        <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+        Invitado
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
+
+<style>
+  .error { color: var(--ion-color-danger); font-size: 12px; margin-top: 4px; }
+</style>
